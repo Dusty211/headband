@@ -1,0 +1,32 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/python
+{
+	"name": "API Development Container",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"dockerComposeFile": [
+		"../compose-dev.yaml"
+	],
+	"service": "api",
+	"workspaceFolder": "/app",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"rooveterinaryinc.roo-cline",
+				"mohamed-nouri.websocket-client",
+				"ms-azuretools.vscode-docker",
+				"usernamehw.errorlens",
+				"ms-python.black-formatter",
+				"ms-python.debugpy",
+				"ms-python.isort",
+				"ms-python.python"
+			],
+			"settings": {
+				"files.exclude": {
+					"**/.venv": true
+				},
+				"python.venvPath": "/app/.venv/bin/python",
+				"python.analysis.autoImportCompletions": true
+			}
+		}
+	}
+}
