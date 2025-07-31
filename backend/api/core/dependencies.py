@@ -3,7 +3,7 @@ from typing import Annotated, AsyncGenerator
 
 from fastapi import Depends
 from langchain_mcp_adapters.tools import load_mcp_tools
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langfuse.callback import CallbackHandler
 from sqlalchemy.ext.asyncio import AsyncEngine, create_async_engine
 
@@ -13,17 +13,19 @@ from api.core.mcps import mcp_sse_client
 from api.core.models import Resource
 
 
-def get_llm() -> ChatOpenAI:
-    return ChatOpenAI(
-        streaming=True,
-        model=settings.model,
-        temperature=0,
-        api_key=settings.openai_api_key,
-        stream_usage=True,
-    )
+def get_llm() -> ChatGoogleGenerativeAI:
+    llm_kwargs = {
+        "streaming": True,
+        "model": settings.model,
+        "temperature": 0,
+        "convert_system_message_to_human": True,
+    }
+    if settings.google_api_key:
+        llm_kwargs["google_api_key"] = settings.google_api_key
+    return ChatGoogleGenerativeAI(**llm_kwargs)
 
 
-LLMDep = Annotated[ChatOpenAI, Depends(get_llm)]
+LLMDep = Annotated[ChatGoogleGenerativeAI, Depends(get_llm)]
 
 
 engine: AsyncEngine = create_async_engine(settings.orm_conn_str)
