@@ -3,7 +3,7 @@ import functools
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 from langchain_core.runnables.base import RunnableSequence
 from langchain_core.tools import StructuredTool
-from langchain_openai import ChatOpenAI
+from langchain_google_genai import ChatGoogleGenerativeAI
 from langgraph.checkpoint.postgres.aio import AsyncPostgresSaver
 from langgraph.graph import MessagesState, StateGraph
 from langgraph.graph.state import CompiledStateGraph
@@ -19,7 +19,7 @@ class State(MessagesState):
 
 
 def agent_factory(
-    llm: ChatOpenAI, tools: list[StructuredTool], system_prompt: str
+    llm: ChatGoogleGenerativeAI, tools: list[StructuredTool], system_prompt: str
 ) -> RunnableSequence:
     prompt = ChatPromptTemplate.from_messages(
         [
@@ -61,7 +61,7 @@ def graph_factory(
 
 
 def get_graph(
-    llm: ChatOpenAI,
+    llm: ChatGoogleGenerativeAI,
     tools: list[StructuredTool] = [
         StructuredTool.from_function(
             func=retrieve_context,

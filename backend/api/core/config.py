@@ -9,8 +9,8 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    model: str = "gpt-4o-mini-2024-07-18"
-    openai_api_key: str = ""
+    model: str = "gemini-2.5-pro"
+    google_api_key: str = ""
     mcp_server_port: int = 8050
 
     postgres_dsn: PostgresDsn = (
