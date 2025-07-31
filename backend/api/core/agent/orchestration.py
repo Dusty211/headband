@@ -11,6 +11,7 @@ from langgraph.prebuilt import ToolNode, tools_condition
 
 from api.core.agent.prompts import SYSTEM_PROMPT
 from api.core.dependencies import LangfuseHandlerDep
+from backend.db.rag_service import retrieve_context
 
 
 class State(MessagesState):
@@ -61,7 +62,13 @@ def graph_factory(
 
 def get_graph(
     llm: ChatOpenAI,
-    tools: list[StructuredTool] = [],
+    tools: list[StructuredTool] = [
+        StructuredTool.from_function(
+            func=retrieve_context,
+            name="retrieve_context",
+            description="Retrieves context from the knowledge base.",
+        )
+    ],
     system_prompt: str = SYSTEM_PROMPT,
     name: str = "agent_node",
     checkpointer: AsyncPostgresSaver | None = None,
