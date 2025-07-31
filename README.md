@@ -33,3 +33,9 @@ This project is configured to be used with [VS Code Dev Containers](https://code
 When you open this project in a devcontainer, VS Code automatically attaches to the running `api` service defined in `compose-dev.yaml`. Port forwarding is also handled automatically.
 
 You can access the API from your local machine at `http://localhost:8000` just as you would if you were running the application locally. No extra configuration is needed.
+
+## License
+
+Copyright (c) 2025 Kyle Houghton. All Rights Reserved. See the `LICENSE` file for more details.
+
+Some of the initial parts of this repo are attributed to `fastapi-mcp-langgraph-template` by Nicholas Goh, which is licensed under the MIT license. A copy of the MIT license is included in the `LICENSE.MIT` file.
