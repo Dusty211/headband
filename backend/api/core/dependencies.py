@@ -14,13 +14,15 @@ from api.core.models import Resource
 
 
 def get_llm() -> ChatGoogleGenerativeAI:
-    return ChatGoogleGenerativeAI(
-        streaming=True,
-        model=settings.model,
-        temperature=0,
-        google_api_key=settings.google_api_key,
-        convert_system_message_to_human=True,
-    )
+    llm_kwargs = {
+        "streaming": True,
+        "model": settings.model,
+        "temperature": 0,
+        "convert_system_message_to_human": True,
+    }
+    if settings.google_api_key:
+        llm_kwargs["google_api_key"] = settings.google_api_key
+    return ChatGoogleGenerativeAI(**llm_kwargs)
 
 
 LLMDep = Annotated[ChatGoogleGenerativeAI, Depends(get_llm)]

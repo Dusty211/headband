@@ -23,7 +23,7 @@ class Settings(BaseSettings):
         # NOTE: Explicitly follow LangGraph AsyncPostgresSaver
         # and use psycopg driver for ORM
         return self.postgres_dsn.encoded_string().replace(
-            "postgresql://", "postgresql+psycopg://"
+            "postgresql://", "postgresql+asyncpg://"
         )
 
     @computed_field
