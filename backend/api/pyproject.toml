@@ -3,7 +3,7 @@ name = "api"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.13"
+requires-python = ">=3.12"
 dependencies = [
     "bs4==0.0.2",
     "faker==30.8.1",
@@ -17,9 +17,12 @@ dependencies = [
     "langgraph-checkpoint-postgres>=2.0.21",
     "mcp[cli]>=1.6.0",
     "prometheus-client==0.21.1",
-    "psycopg[binary]==3.2.3",
+    "asyncpg==0.29.0",
+    "pgvector==0.2.5",
+    "llama-index==0.10.55",
+    "llama-index-embeddings-huggingface==0.2.2",
     "pydantic-settings==2.6.0",
-    "pypdf==5.1.0",
+    "pypdf==4.2.0",
     "rich==13.9.4",
     "sqlmodel>=0.0.24",
     "sse-starlette==2.1.3",
