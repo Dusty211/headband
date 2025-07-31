@@ -11,6 +11,7 @@ services:
     volumes:
       - ./backend:/app/backend
       - roo_cline_data:/root/.vscode-server/data/globalStorage/rooveterinaryinc.roo-cline
+      - huggingface_cache:/root/.cache/huggingface
 
   mcp:
     image: mcp:prod
@@ -56,3 +57,4 @@ services:
 volumes:
   roo_cline_data:
   postgres_data:
+  huggingface_cache:
